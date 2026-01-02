@@ -40,7 +40,7 @@ const Navbar = () => {
         >
             <div className="container mx-auto px-6 flex items-center justify-between">
                 <Link to="/" className="text-xl font-bold tracking-tighter">
-                    ryand<span className="text-primary">.dev</span>
+                    ryandra<span className="text-primary">.dev</span>
                 </Link>
 
                 {/* Desktop Menu */}

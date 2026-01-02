@@ -3,7 +3,7 @@ const Footer = () => {
         <footer className="bg-background border-t border-border py-12 mt-auto">
             <div className="container mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
                 <div className="text-center md:text-left">
-                    <h3 className="text-lg font-bold">ryand.dev</h3>
+                    <h3 className="text-lg font-bold">ryandra.dev</h3>
                     <p className="text-sm text-muted-foreground mt-2">
                         Building digital experiences with passion and precision.
                     </p>
