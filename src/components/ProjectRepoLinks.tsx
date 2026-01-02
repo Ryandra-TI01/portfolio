@@ -15,7 +15,6 @@ const ProjectRepoLinks = ({
   repoUrl,
   liveUrl,
   showLiveUrl,
-  variant = "overlay",
 }: ProjectRepoLinksProps) => {
   const isMultiple = Array.isArray(repoUrl);
   const [open, setOpen] = useState(false);
