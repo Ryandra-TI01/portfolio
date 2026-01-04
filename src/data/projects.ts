@@ -28,29 +28,46 @@ export interface Project {
 export const projects: Project[] = [
     {
         id: "1",
-        title: "HealthTrack – Chronic Health Monitoring App",
-        description: "Fullstack health monitoring web application for tracking chronic health conditions.",
-        techStack: ["Laravel", "Livewire", "Tailwind CSS", "PostgreSQL"],
+        title: "HealthTrack – Chronic Health Monitoring System",
+        description:
+            "A full-stack health monitoring system focused on secure data management, role-based access control, and long-term tracking of chronic health conditions.",
+        techStack: [
+            "Laravel",
+            "Livewire",
+            "Tailwind CSS",
+            "PostgreSQL"
+        ],
         liveUrl: "",
         showLiveUrl: false,
         repoUrl: "https://github.com/Ryandra-TI01/HealthTrack",
         image: healthTrack,
         details: {
-            problem: "Needed a way to monitor chronic health conditions with clear UI and secure data handling.",
-            solution: "Developed a fullstack health monitoring app using Laravel, Livewire, and PostgreSQL.",
+            problem:
+                "Manual and unstructured health tracking makes it difficult to monitor long-term conditions securely and consistently.",
+            solution:
+                "Built a structured health monitoring platform using Laravel and PostgreSQL, emphasizing data integrity, secure access control, and a clear user interface for managing health records.",
             features: [
-                "Rule-based access control",
-                "Dynamic filtering and search",
-                "Data visualization and management"
+                "Role-based access control (RBAC)",
+                "Dynamic data filtering and search",
+                "Health data visualization and structured record management"
             ],
-            challenges: "Ensuring scalability and secure handling of sensitive health data."
+            challenges:
+                "Designing a scalable data model while ensuring secure handling of sensitive health information."
         }
     },
     {
         id: "2",
         title: "HRIS – Human Resource Information System",
-        description: "Frontend and backend applications for managing HR processes.",
-        techStack: ["React", "Laravel", "MySQL", "Docker", "Tailwind CSS", "Shadcn UI"],
+        description:
+            "A modular Human Resource Information System built with a separated frontend-backend architecture to manage employee data, payroll, and attendance efficiently.",
+        techStack: [
+            "React",
+            "Laravel",
+            "MySQL",
+            "Docker",
+            "Tailwind CSS",
+            "Shadcn UI"
+        ],
         liveUrl: "",
         showLiveUrl: false,
         repoUrl: [
@@ -59,21 +76,33 @@ export const projects: Project[] = [
         ],
         image: hris,
         details: {
-            problem: "Companies needed a centralized HR system to manage employees and payroll.",
-            solution: "Built HRIS with separate frontend (React) and backend (Laravel) repositories.",
+            problem:
+                "HR operations are often handled through disconnected tools, leading to data duplication and operational inefficiencies.",
+            solution:
+                "Developed a full-stack HRIS with a decoupled architecture, enabling clean API communication, maintainable codebases, and containerized development workflows.",
             features: [
-                "Employee management dashboard",
+                "Employee data management dashboard",
                 "Payroll and attendance tracking",
-                "Role-based authentication"
+                "Authentication with role-based permissions"
             ],
-            challenges: "Synchronizing frontend and backend APIs with Dockerized environments."
+            challenges:
+                "Maintaining synchronization between frontend and backend services while developing and testing within Dockerized environments."
         }
     },
-        {
+
+    {
         id: "3",
-        title: "TaskFlow – Task Management App",
-        description: "Frontend and backend applications for collaborative task management.",
-        techStack: ["React", "Laravel", "PostgreSQL", "Docker", "Tailwind CSS", "TanStack Query"],
+        title: "TaskFlow – Collaborative Task Management Platform",
+        description:
+            "A scalable task management platform designed to improve team productivity through real-time collaboration, structured workflows, and efficient state synchronization.",
+        techStack: [
+            "React",
+            "Laravel",
+            "PostgreSQL",
+            "Docker",
+            "Tailwind CSS",
+            "TanStack Query"
+        ],
         liveUrl: "https://taskflow-demo.vercel.app",
         showLiveUrl: true,
         repoUrl: [
@@ -82,37 +111,47 @@ export const projects: Project[] = [
         ],
         image: taskFlow,
         details: {
-            problem: "Teams needed a way to manage tasks and workflows efficiently.",
-            solution: "Developed TaskFlow with React frontend and Laravel backend.",
+            problem:
+                "Teams often struggle with fragmented tools and inconsistent task tracking, leading to poor visibility and inefficient collaboration.",
+            solution:
+                "Designed and implemented a decoupled frontend-backend architecture using React and Laravel, focusing on API-driven workflows, predictable state management, and performance optimization.",
             features: [
-                "Kanban board for task tracking",
-                "User authentication and role management",
-                "Real-time updates with WebSockets"
+                "Kanban-based task workflow management",
+                "User authentication and role-based access control",
+                "Optimized data fetching and caching with TanStack Query"
             ],
-            challenges: "Handling synchronization between frontend and backend in Dockerized setup."
+            challenges:
+                "Ensuring data consistency between frontend and backend services while maintaining performance in a Dockerized development environment."
         }
     },
     {
         id: "4",
-        title: "Bookstore – Online Bookstore Platform",
-        description: "Web application for browsing, purchasing, and managing books.",
-        techStack: ["Laravel", "MySQL", "Tailwind CSS"],
+        title: "Bookstore – Online Bookstore Application",
+        description:
+            "A Laravel-based online bookstore application demonstrating clean CRUD architecture, catalog management, and transaction workflows.",
+        techStack: [
+            "Laravel",
+            "MySQL",
+            "Tailwind CSS"
+        ],
         liveUrl: "",
         showLiveUrl: false,
         repoUrl: "https://github.com/Ryandra-TI01/bookstore",
         image: bookStore,
         details: {
-            problem: "Needed a simple online bookstore system for catalog and transactions.",
-            solution: "Developed a Laravel-based bookstore with CRUD features.",
+            problem:
+                "Small-scale businesses need a simple yet structured system to manage product catalogs and customer transactions.",
+            solution:
+                "Implemented a Laravel-based bookstore platform with organized CRUD operations and a straightforward checkout flow.",
             features: [
-                "Book catalog with search and filter",
-                "Shopping cart and checkout system",
-                "Admin panel for inventory management"
+                "Book catalog with search and filtering",
+                "Shopping cart and checkout functionality",
+                "Admin inventory management panel"
             ],
-            challenges: "Implementing secure transaction flow and maintaining clean UI."
+            challenges:
+                "Designing a clean and maintainable structure while keeping the user interface simple and intuitive."
         }
-    },
-
+    }
     // {
     //     id: "5",
     //     title: "AnakSehat – Health Education Web App",
