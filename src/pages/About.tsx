@@ -2,10 +2,22 @@ import { motion } from "framer-motion";
 import andraAquarium from "../assets/andraAquarium.webp";
 
 const skills = [
-    { category: "Frontend", items: ["React", "TypeScript","Livewire", "Tailwind CSS","Bootstrap", "Framer Motion", "Shadcn UI", "HTML5/CSS3"] },
-    { category: "Backend", items: ["Laravel", "PHP", "Node.js", "MySQL", "PostgreSQL", "MongoDB", "Python", "REST APIs"] },
-    { category: "Tools & DevOps", items: ["Git", "GitHub", "Vercel", "Docker", "Composer", "npm/yarn"] },
-    { category: "Soft Skills", items: ["Problem Solving", "Team Collaboration", "Communication", "Agile/Scrum"] }
+    {
+        category: "Frontend",
+        items: ["React", "TypeScript", "Livewire", "Expo", "Tailwind CSS", "Bootstrap", "Framer Motion", "Shadcn UI", "HTML5/CSS3"]
+    },
+    {
+        category: "Backend",
+        items: ["Laravel", "PHP", "REST APIs", "MySQL", "PostgreSQL", "MongoDB"]
+    },
+    {
+        category: "DevOps & Tools",
+        items: ["Docker", "Git", "GitHub", "Postman", "Vercel", "npm", "Jira"]
+    },
+    {
+        category: "Methodologies",
+        items: ["Agile/Scrum", "Problem Solving", "Team Collaboration", "Problem Solving", "Time Management"]
+    }
 ];
 
 const About = () => {
@@ -39,7 +51,7 @@ const About = () => {
                             <div className="w-full h-full flex items-center justify-center bg-muted text-muted-foreground">
                                 <img src={andraAquarium} alt="andraAquarium" className="w-full h-full object-cover" />
                             </div>
-                        </div>                       
+                        </div>
                     </div>
                 </div>
 

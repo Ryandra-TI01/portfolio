@@ -103,8 +103,8 @@ export const projects: Project[] = [
             "Tailwind CSS",
             "TanStack Query"
         ],
-        liveUrl: "https://taskflow-demo.vercel.app",
-        showLiveUrl: true,
+        liveUrl: "",
+        showLiveUrl: false,
         repoUrl: [
             { label: "Frontend", url: "https://github.com/Ryandra-TI01/taskflow-frontend" },
             { label: "Backend", url: "https://github.com/Ryandra-TI01/taskflow-backend" }
