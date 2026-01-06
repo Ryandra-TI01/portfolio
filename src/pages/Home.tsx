@@ -47,7 +47,7 @@ const Home = () => {
             icon: <Terminal className="text-orange-500" size={24} />,
             title: "DevOps & Tools",
             description: "Streamlining deployment and maintaining code quality.",
-            tags: ["Docker", "Git", "CI/CD", "Linux"]
+            tags: ["Docker", "Git", "Postman", "Vercel", "WSL"]
         }
     ];
 
@@ -86,7 +86,7 @@ const Home = () => {
                             variants={fadeInUp}
                             className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 mb-6"
                         >
-                            Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-900 via-zinc-800 to-zinc-500">Ryandra Athaya Saleh</span>.
+                            Hi, I'm <span className="text-transparent bg-clip-text bg-linear-to-r from-zinc-900 via-zinc-800 to-zinc-500">Ryandra Athaya Saleh</span>.
                         </motion.h1>
 
                         {/* Subtitle: Value Proposition */}
@@ -161,7 +161,7 @@ const Home = () => {
                                 >
                                     <div className="h-full p-8 rounded-2xl bg-white border border-zinc-100 shadow-sm hover:shadow-xl hover:shadow-zinc-200/40 transition-all duration-300 relative overflow-hidden">
                                         {/* Subtle top gradient accent on hover */}
-                                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-zinc-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                                        <div className="absolute top-0 left-0 w-full h-1 bg-grlinearadient-to-r from-transparent via-zinc-400 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                                         <div className="h-12 w-12 rounded-xl bg-zinc-50 border border-zinc-100 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-white group-hover:shadow-md transition-all duration-300">
                                             {tech.icon}

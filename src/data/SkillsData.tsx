@@ -14,8 +14,12 @@ import {
     SiPostman,
     SiShadcnui,
     SiJira,
-    SiLinux
+    SiLinux,
+    SiVercel,
 } from "react-icons/si";
+import { DiRedis } from "react-icons/di";
+import { BsFiletypeJson } from "react-icons/bs";
+
 import { Users, Puzzle, Clock } from "lucide-react";
 import type { ReactNode } from "react";
 
@@ -77,6 +81,12 @@ const skills: SkillCategory[] = [
         category: "Backend",
         items: [
             {
+                name: "Rest Api",
+                icon: <BsFiletypeJson size={16} />,
+                color: "group bg-black/50 text-white", // Laravel Red
+                textColor: "group text-black/50" 
+            },
+            {
                 name: "Laravel",
                 icon: <SiLaravel size={16} />,
                 color: "group bg-[#FF2D20] text-white", // Laravel Red
@@ -100,6 +110,12 @@ const skills: SkillCategory[] = [
                 color: "group bg-[#4169E1] text-white", // Postgres Blue
                 textColor: "group text-[#4169E1]"
             },
+            {
+                name: "Redis",
+                icon: <DiRedis size={16} />,
+                color: "group bg-red-500 text-white", // Postgres Blue
+                textColor: "group text-red-500"
+            }
         ]
     },
     {
@@ -141,6 +157,12 @@ const skills: SkillCategory[] = [
                 color: "group bg-[#4E4E4E] text-white", // Terminal Grey
                 textColor: "group text-[#4E4E4E]"
             },
+            {
+                name: "Vercel",
+                icon: <SiVercel size={16} />,
+                color: "group bg-[#000000] text-white", // Black
+                textColor: "group text-black"
+            }
         ]
     },
     {

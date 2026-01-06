@@ -78,7 +78,7 @@ const Certifications = () => {
 
                         {/* 2. Dark Overlay (To make text readable on top of image) */}
                         <div 
-                            className="absolute inset-0 z-0 bg-gradient-to-t from-black/90 via-black/60 to-black/30 opacity-0 transition-opacity duration-500 group-hover:opacity-100" 
+                            className="absolute inset-0 z-0 bg-linear-to-t from-black/90 via-black/60 to-black/30 opacity-0 transition-opacity duration-500 group-hover:opacity-100" 
                         />
 
                         {/* ========================================== */}

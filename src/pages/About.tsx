@@ -90,7 +90,7 @@ const About = () => {
                                             {/* Icon container */}
                                             <span
                                                 className={`
-                                                    flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-md
+                                                    shrink-0 w-8 h-8 flex items-center justify-center rounded-md
                                                     transition-all duration-300
                                                     group-hover:shadow-md group-hover:rotate-3
                                                     ${skill.color}
