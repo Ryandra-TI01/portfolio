@@ -122,6 +122,40 @@ portfolio/
 
 ---
 
+### FR-02.1 Career Timeline
+
+**Description:** Menampilkan timeline karir dan pendidikan secara kronologis.
+
+**Requirements:**
+
+- Menampilkan pengalaman kerja dan pendidikan dalam format timeline
+- Setiap entry memiliki:
+    - Nama institusi/perusahaan
+    - Posisi/program
+    - Periode waktu
+    - Deskripsi singkat (opsional)
+- Timeline diurutkan dari yang terbaru (reverse chronological)
+- Visual timeline yang jelas dan mudah dibaca
+
+**Career Data:**
+
+1. **NF Academy** - Fullstack Web Developer – Independent Study (NFA)
+   - September - December 2025
+
+2. **PT Jarvis Integrasi Solusi** - Fullstack & Mobile App Developer Intern
+   - March 2025 - May 2025
+
+3. **PT. Jarvis Integrasi Solusi** - Jarvis Bootcamp Batch 5
+   - May 2024 - July 2024
+
+4. **Permodalan Nasional Madani** - IT Operations / Data Center Intern
+   - August 2025 - January 2026
+
+5. **PT Poca Jaringan Solusi** - Document Control
+   - October 2022 - March 2023
+
+---
+
 ### FR-03 Projects Page
 
 **Description:** Halaman showcase project utama.

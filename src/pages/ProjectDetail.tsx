@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, Layers, Zap, AlertTriangle } from "lucide-react";
+import { ArrowLeft, Layers, Zap, AlertCircle, CheckCircle2 } from "lucide-react";
 import { projects } from "../data/projects";
 import { Button } from "../components/ui/button";
 import ProjectRepoLinks from "../components/ProjectRepoLinks";
 
 const ProjectDetail = () => {
-    const { id } = useParams<{ id: string }>();
+    const { id } = useParams();
     const navigate = useNavigate();
     const project = projects.find(p => p.id === id);
 
@@ -17,113 +17,154 @@ const ProjectDetail = () => {
 
     if (!project) {
         return (
-            <div className="min-h-screen flex flex-col items-center justify-center space-y-4">
-                <h2 className="text-2xl font-bold">Project Not Found</h2>
-                <Button onClick={() => navigate('/projects')}>Back to Projects</Button>
+            <div className="min-h-screen bg-zinc-50 flex flex-col items-center justify-center space-y-4">
+                <h2 className="text-2xl font-bold text-zinc-900">Project Not Found</h2>
+                <Button
+                    onClick={() => navigate('/projects')}
+                    variant="outline"
+                    className="border-zinc-300 hover:bg-zinc-100 text-zinc-700"
+                >
+                    Back to Projects
+                </Button>
             </div>
         );
     }
 
     return (
-        <div className="min-h-screen pt-24 pb-16 px-6 container mx-auto">
+        <div className="min-h-screen bg-zinc-50 pt-24 pb-20 px-6">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 className="max-w-5xl mx-auto"
             >
-                <Link to="/projects" className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors mb-8">
-                    <ArrowLeft size={16} className="mr-2" /> Back to Projects
+                {/* Back Link */}
+                <Link
+                    to="/projects"
+                    className="inline-flex items-center text-sm font-medium text-zinc-500 hover:text-zinc-900 transition-colors mb-8 group"
+                >
+                    <ArrowLeft size={16} className="mr-2 group-hover:-translate-x-1 transition-transform" />
+                    Back to Projects
                 </Link>
 
-                <header className="mb-12">
-                    <h1 className="text-4xl md:text-5xl font-bold mb-6">{project.title}</h1>
-                    <p className="text-xl text-muted-foreground max-w-3xl mb-8">
-                        {project.description}
-                    </p>
+                {/* Header Section */}
+                <header className="mb-12 border-b border-zinc-200 pb-12">
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6">
+                        <div className="max-w-3xl">
+                            <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 tracking-tight mb-6">
+                                {project.title}
+                            </h1>
+                            <p className="text-xl text-zinc-500 leading-relaxed">
+                                {project.description}
+                            </p>
+                        </div>
 
-                    <ProjectRepoLinks
-                        repoUrl={project.repoUrl}
-                        liveUrl={project.liveUrl}
-                        showLiveUrl={project.showLiveUrl}
-                        variant="button"
-                    />
-                </header>
-
-                {/* Visual Showcase Placeholder - Real image would go here */}
-                {/* Visual Showcase */}
-                {project.image ? (
-                    <div className="w-full rounded-2xl mb-12 overflow-hidden border border-border bg-muted shadow-sm group">
-                        <div className="relative">
-                            <img
-                                src={project.image}
-                                alt={project.title}
-                                className="w-full h-auto max-h-[600px] object-contain bg-secondary/20"
+                        <div className="shrink-0">
+                            <ProjectRepoLinks
+                                repoUrl={project.repoUrl}
+                                liveUrl={project.liveUrl}
+                                showLiveUrl={project.showLiveUrl}
+                                variant="button"
                             />
                         </div>
                     </div>
-                ) : (
-                    <div className="aspect-video bg-secondary w-full rounded-2xl mb-12 flex items-center justify-center border border-border">
-                        <span className="text-muted-foreground font-medium">No Preview Available</span>
-                    </div>
-                )}
+                </header>
 
+                {/* Image Showcase */}
+                <div className="mb-16">
+                    <div className="rounded-2xl border border-zinc-200 bg-white p-2 shadow-sm">
+                        <div className="relative aspect-video overflow-hidden rounded-xl bg-zinc-100">
+                            {project.image ? (
+                                <img
+                                    src={project.image}
+                                    alt={project.title}
+                                    className="w-full h-full object-cover"
+                                />
+                            ) : (
+                                <div className="w-full h-full flex items-center justify-center text-zinc-300">
+                                    <span className="font-medium">No Preview Available</span>
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Content Grid */}
                 <div className="grid md:grid-cols-3 gap-12">
+
+                    {/* Main Content (Left Column) */}
                     <div className="md:col-span-2 space-y-12">
+                        {/* The Problem */}
                         <section>
-                            <h2 className="text-2xl font-bold mb-4 flex items-center">
-                                <AlertTriangle size={24} className="mr-3 text-orange-500" />
-                                The Problem
+                            <h2 className="text-xl font-bold text-zinc-900 mb-4 flex items-center gap-2">
+                                <AlertCircle size={20} className="text-zinc-400" />
+                                The Challenge
                             </h2>
-                            <p className="text-muted-foreground leading-relaxed">
+                            <p className="text-zinc-600 leading-relaxed text-lg">
                                 {project.details.problem}
                             </p>
                         </section>
 
+                        {/* The Solution */}
                         <section>
-                            <h2 className="text-2xl font-bold mb-4 flex items-center">
-                                <Zap size={24} className="mr-3 text-yellow-500" />
+                            <h2 className="text-xl font-bold text-zinc-900 mb-4 flex items-center gap-2">
+                                <Zap size={20} className="text-zinc-400" />
                                 The Solution
                             </h2>
-                            <p className="text-muted-foreground leading-relaxed mb-6">
+                            <p className="text-zinc-600 leading-relaxed text-lg mb-8">
                                 {project.details.solution}
                             </p>
 
-                            <div className="bg-card border border-border rounded-xl p-6">
-                                <h3 className="font-semibold mb-4 text-lg">Key Features</h3>
-                                <ul className="space-y-2">
+                            {/* Key Features List */}
+                            <div className="bg-white border border-zinc-200 rounded-xl p-6 shadow-sm">
+                                <h3 className="font-semibold text-zinc-900 mb-4 text-sm uppercase tracking-wider">
+                                    Key Features
+                                </h3>
+                                <ul className="space-y-3">
                                     {project.details.features.map((feature, i) => (
-                                        <li key={i} className="flex items-start text-muted-foreground">
-                                            <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2 mr-3 flex-shrink-0" />
-                                            {feature}
+                                        <li key={i} className="flex items-start text-zinc-600 group">
+                                            <CheckCircle2 size={18} className="mt-1 mr-3 text-zinc-400 group-hover:text-zinc-900 transition-colors shrink-0" />
+                                            <span className="leading-relaxed">{feature}</span>
                                         </li>
                                     ))}
                                 </ul>
                             </div>
                         </section>
 
-                        <section>
-                            <h2 className="text-2xl font-bold mb-4">Technical Challenges</h2>
-                            <p className="text-muted-foreground leading-relaxed">
-                                {project.details.challenges}
-                            </p>
-                        </section>
+                        {/* Technical Challenges */}
+                        {project.details.challenges && (
+                            <section>
+                                <h2 className="text-xl font-bold text-zinc-900 mb-4">Technical Hurdles</h2>
+                                <p className="text-zinc-600 leading-relaxed text-lg">
+                                    {project.details.challenges}
+                                </p>
+                            </section>
+                        )}
                     </div>
 
+                    {/* Sidebar (Right Column) */}
                     <div className="space-y-8">
-                        <div className="p-6 rounded-xl bg-secondary/50 border border-border">
-                            <h3 className="text-lg font-bold mb-4 flex items-center">
-                                <Layers size={20} className="mr-2" /> Tech Stack
-                            </h3>
-                            <div className="flex flex-wrap gap-2">
-                                {project.techStack.map(tech => (
-                                    <span key={tech} className="px-3 py-1 bg-background rounded-full text-sm font-medium border border-border">
-                                        {tech}
-                                    </span>
-                                ))}
+                        {/* Tech Stack Card */}
+                        <div className="sticky top-24">
+                            <div className="p-6 rounded-xl bg-white border border-zinc-200 shadow-sm">
+                                <h3 className="text-sm font-bold text-zinc-900 mb-6 flex items-center uppercase tracking-wider">
+                                    <Layers size={16} className="mr-2 text-zinc-400" />
+                                    Tech Stack
+                                </h3>
+                                <div className="flex flex-wrap gap-2">
+                                    {project.techStack.map(tech => (
+                                        <span
+                                            key={tech}
+                                            className="text-xs font-semibold text-zinc-600 bg-zinc-100 border border-zinc-200 px-3 py-1.5 rounded-md"
+                                        >
+                                            {tech}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </motion.div>
         </div>

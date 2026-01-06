@@ -1,86 +1,126 @@
 import { motion } from "framer-motion";
 import andraAquarium from "../assets/andraAquarium.webp";
-
-const skills = [
-    {
-        category: "Frontend",
-        items: ["React", "TypeScript", "Livewire", "Expo", "Tailwind CSS", "Bootstrap", "Framer Motion", "Shadcn UI", "HTML5/CSS3"]
-    },
-    {
-        category: "Backend",
-        items: ["Laravel", "PHP", "REST APIs", "MySQL", "PostgreSQL", "MongoDB"]
-    },
-    {
-        category: "DevOps & Tools",
-        items: ["Docker", "Git", "GitHub", "Postman", "Vercel", "npm", "Jira"]
-    },
-    {
-        category: "Methodologies",
-        items: ["Agile/Scrum", "Problem Solving", "Team Collaboration", "Problem Solving", "Time Management"]
-    }
-];
-
+import CareerTimeline from "../components/CareerTimeline";
+import skills, { type Skill, type SkillCategory } from "@/data/SkillsData";
+import { Download } from "lucide-react";
+import Certifications from "@/components/Certifications";
 const About = () => {
+    const resumePath = "/cv.pdf";
     return (
-        <div className="min-h-screen pt-24 pb-16 px-6 container mx-auto">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="max-w-4xl mx-auto"
-            >
-                <h1 className="text-4xl font-bold mb-8">About Me</h1>
+        <div className="min-h-screen bg-zinc-50 text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white pt-32 pb-20">
+            <div className="container mx-auto px-6 max-w-5xl">
 
-                <div className="grid md:grid-cols-2 gap-12 mb-16">
-                    <div className="space-y-6 text-lg text-muted-foreground">
-                        <p>
-                            Hello! I'm Ryan, a passionate Software Engineer focused on web development.
-                            My journey began with a curiosity for how things work on the internet, which quickly translated into a deep love for coding.
-                        </p>
-                        <p>
-                            I specialize in the <strong>Laravel + React</strong> stack, combining the robustness of PHP's most popular framework with the interactivity of modern React.
-                        </p>
-                        <p>
-                            My goal is to build applications that not only solve real-world problems but also provide an intuitive and enjoyable user experience. I'm constantly learning and keeping up with the latest trends in web development.
-                        </p>
+                {/* Header Section */}
+                <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.4 }}
+                    className="flex flex-col-reverse md:flex-row gap-12 items-start mb-20 border-b border-zinc-200 pb-16"
+                >
+                    <div className="flex-1 space-y-6">
+                        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">
+                            About Me
+                        </h1>
+                        <div className="space-y-4 text-zinc-600 leading-relaxed text-base md:text-lg">
+                            <p>
+                                I am a Software Engineer based in Indonesia, specializing in building robust web applications using <strong>Laravel</strong> and <strong>React</strong>.
+                            </p>
+                            <p>
+                                My approach to development is grounded in structure and scalability. Whether architecting a backend API or refining a frontend interaction, I prioritize clean code and maintainable systems over temporary fixes.
+                            </p>
+                            <p>
+                                Currently open for new opportunities where I can contribute to complex problems and drive business value through technology.
+                            </p>
+                        </div>
+
+                        <div className="pt-2">
+                            <a
+                                href={resumePath}
+                                download="Ryandra_Athaya_Saleh.pdf"
+                                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-colors"
+                            >
+                                <Download size={16} />
+                                Download Resume
+                            </a>
+                        </div>
                     </div>
 
-                    <div className="relative">
-                        <div className="aspect-square rounded-2xl bg-secondary overflow-hidden shadow-xl border border-border">
-                            {/* Placeholder for profile image */}
-                            <div className="w-full h-full flex items-center justify-center bg-muted text-muted-foreground">
-                                <img src={andraAquarium} alt="andraAquarium" className="w-full h-full object-cover" />
+
+                    <div className="w-full md:w-1/3">
+                        {/* Right: Image */}
+                        <div className="relative group">
+                            <div className="absolute inset-0 bg-zinc-900 rounded-2xl rotate-3 group-hover:rotate-6 transition-transform duration-300 opacity-10"></div>
+                            <div className="relative aspect-square rounded-2xl overflow-hidden border border-zinc-200 shadow-2xl bg-white">
+                                <img
+                                    src={andraAquarium}
+                                    alt="Ryandra Athaya"
+                                    className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500"
+                                />
                             </div>
                         </div>
                     </div>
+                </motion.div>
+
+                {/* Technical Proficiency Grid */}
+                <div className="mb-20">
+                    <h2 className="text-xl font-bold mb-8 text-zinc-900 tracking-tight">Technical Proficiency</h2>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+                        {skills.map((group: SkillCategory, idx: number) => (
+                            <motion.div
+                                key={idx}
+                                initial={{ opacity: 0 }}
+                                whileInView={{ opacity: 1 }}
+                                transition={{ delay: idx * 0.1, duration: 0.5 }}
+                                viewport={{ once: true }}
+                            >
+                                <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-5 border-b border-zinc-100 pb-2">
+                                    {group.category}
+                                </h3>
+                                <ul className="space-y-3">
+                                    {group.items.map((skill: Skill) => (
+                                        <li
+                                            key={skill.name}
+                                            className={`
+                                                    flex items-center gap-3 text-zinc-600 group cursor-pointer
+                                                    transition-all duration-300
+                                                    hover:scale-105 
+                                                    rounded-lg px-2 py-2
+                                                `}
+                                        >
+                                            {/* Icon container */}
+                                            <span
+                                                className={`
+                                                    flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-md
+                                                    transition-all duration-300
+                                                    group-hover:shadow-md group-hover:rotate-3
+                                                    ${skill.color}
+                                                    `}
+                                            >
+                                                {skill.icon}
+                                            </span>
+
+                                            {/* Text Name */}
+                                            <span
+                                                className={`
+                                                    text-sm font-medium transition-colors
+                                                    ${skill.textColor}
+                                                    `}
+                                            >
+                                                {skill.name}
+                                            </span>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </motion.div>
+                        ))}
+                    </div>
                 </div>
 
-                <h2 className="text-2xl font-bold mb-6">Technical Skills</h2>
-                <div className="grid sm:grid-cols-2 gap-6">
-                    {skills.map((skillGroup, index) => (
-                        <motion.div
-                            key={skillGroup.category}
-                            initial={{ opacity: 0, y: 10 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            transition={{ delay: index * 0.1 }}
-                            viewport={{ once: true }}
-                            className="p-6 rounded-xl bg-card border border-border"
-                        >
-                            <h3 className="text-lg font-semibold mb-4 text-primary">{skillGroup.category}</h3>
-                            <div className="flex flex-wrap gap-2">
-                                {skillGroup.items.map((skill) => (
-                                    <span
-                                        key={skill}
-                                        className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-secondary text-secondary-foreground"
-                                    >
-                                        {skill}
-                                    </span>
-                                ))}
-                            </div>
-                        </motion.div>
-                    ))}
-                </div>
-            </motion.div>
+                {/* Timeline Section */}
+                <CareerTimeline />
+                {/* Certification section */}
+                <Certifications />
+            </div>
         </div>
     );
 };
