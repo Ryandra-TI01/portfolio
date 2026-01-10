@@ -36,7 +36,8 @@ const About = () => {
                         <div className="pt-2">
                             <a
                                 href={resumePath}
-                                download="Ryandra_Athaya_Saleh.pdf"
+                                target="_blank"
+                                rel="noreferrer"
                                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800 transition-colors"
                             >
                                 <Download size={16} />

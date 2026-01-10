@@ -41,7 +41,7 @@ const Contact = () => {
                         <a href={`mailto:${email}`} className="absolute inset-0 z-0" aria-label="Send email" />
                         
                         <div className="flex items-center space-x-4 z-10">
-                            <div className="p-3 bg-white border border-zinc-200 rounded-lg text-red-500 group-hover:border-zinc-400 group-hover:bg-black group-hover:text-white transition-colors">
+                            <div className="p-3 bg-white border border-zinc-200 rounded-lg text-red-500 group-hover:border-zinc-400 group-hover:bg-red-500 group-hover:text-white transition-colors">
                                 <Mail size={24} />
                             </div>
                             <div className="text-left">
@@ -120,7 +120,8 @@ const Contact = () => {
                     {/* Download CV Button */}
                     <a 
                         href={resumePath}
-                        download="Ryandra_Athaya_Saleh_CV.pdf"
+                        target="_blank"
+                        rel="noreferrer"
                         className="inline-flex items-center justify-center px-8 py-3 text-sm font-medium text-zinc-700 bg-white border border-zinc-200 rounded-full hover:bg-zinc-50 hover:text-zinc-900 transition-all hover:scale-105 active:scale-95"
                     >
                         <FileText size={18} className="mr-2" />

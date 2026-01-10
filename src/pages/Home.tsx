@@ -106,7 +106,7 @@ const Home = () => {
                             <a href="https://www.linkedin.com/in/ryandra-athaya-saleh-234161293" target="_blank" rel="noreferrer" className="hover:text-blue-700 transition-colors p-2 hover:bg-zinc-100 rounded-full">
                                 <Linkedin size={22} />
                             </a>
-                            <a href={resumePath} download="Ryandra_Athaya_Saleh.pdf" rel="noreferrer" className="hover:text-zinc-900 transition-colors flex items-center gap-2 p-2 hover:bg-zinc-100 rounded-full px-4 text-sm font-medium border border-transparent hover:border-zinc-200">
+                            <a href={resumePath} target="_blank" rel="noreferrer" className="hover:text-zinc-900 transition-colors flex items-center gap-2 p-2 hover:bg-zinc-100 rounded-full px-4 text-sm font-medium border border-transparent hover:border-zinc-200">
                                 <FileText size={18} />
                                 <span className="hidden sm:inline">Download CV</span>
                             </a>
