@@ -51,7 +51,7 @@ const timelineData = [
         id: 5,
         company: "PT Poca Jaringan Solusi",
         role: "Document Control",
-        type: "Contract", 
+        type: "Internship", 
         period: "Oct 2022 - Mar 2023",
         description: [
             "Managed and organized company documents ensuring they were structured and easily accessible.",
