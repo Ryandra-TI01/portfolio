@@ -5,6 +5,7 @@ import { ArrowLeft, Layers, Zap, AlertCircle, CheckCircle2 } from "lucide-react"
 import { projects } from "../data/projects";
 import { Button } from "../components/ui/button";
 import ProjectRepoLinks from "../components/ProjectRepoLinks";
+import ParticleBackground from "../components/ParticleBackground";
 
 const ProjectDetail = () => {
     const { id } = useParams();
@@ -32,6 +33,8 @@ const ProjectDetail = () => {
 
     return (
         <div className="min-h-screen bg-zinc-50 pt-24 pb-20 px-6">
+                                    <ParticleBackground />
+
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -48,8 +51,12 @@ const ProjectDetail = () => {
                 </Link>
 
                 {/* Header Section */}
-                <header className="mb-12 border-b border-zinc-200 pb-12">
-                    <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6">
+                <header className="relative mb-12 overflow-hidden rounded-3xl border border-zinc-200 bg-white/70 px-6 py-8 md:px-10 md:py-10">
+                    <div className="absolute inset-0 z-0">
+                        <div className="absolute left-1/2 top-0 h-44 w-96 -translate-x-1/2 rounded-full bg-blue-200/50 blur-3xl" />
+                        <div className="absolute right-0 bottom-0 h-36 w-64 rounded-full bg-sky-200/40 blur-3xl" />
+                    </div>
+                    <div className="relative z-10 flex flex-col md:flex-row md:justify-between md:items-start gap-6">
                         <div className="max-w-3xl">
                             <h1 className="text-4xl md:text-5xl font-bold text-zinc-900 tracking-tight mb-6">
                                 {project.title}

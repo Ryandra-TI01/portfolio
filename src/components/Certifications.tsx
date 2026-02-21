@@ -1,5 +1,10 @@
 import { motion } from "framer-motion";
 import { Award, ExternalLink, Calendar } from "lucide-react";
+import CertificateNFA from "../assets/CertificateNFA.webp";
+import CertificateResponsiveWeb from "../assets/CertificateResponsiveWeb.webp";
+import CertificateMTCNA from "../assets/CertificateMTCNA.webp";
+import CertificateMOS from "../assets/CertificateMOS.webp";
+import CertificateBNSP from "../assets/CertificateBNSP.webp";
 
 const certifications = [
     {
@@ -7,9 +12,9 @@ const certifications = [
         title: "Fullstack Web Developer",
         issuer: "NF Academy (Independent Study)",
         date: "Sep 2025",
-        credentialLink: "https://www.linkedin.com/redir/redirect/?url=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1L5p5aRy5cN7G_hP7Bff1ES1uJVPOfi5A%2Fview%3Fusp%3Dsharing&urlhash=_oS9&isSdui=true&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BPXUW5QCCTWGt0LAspL%2BerA%3D%3D",
+        credentialLink: "https://www.linkedin.com/redir/redirect/?url=https%3A%2F%2Fsinufia.nfacademy.id%2Fcertificate-verification%2F12e13526-3b2f-483a-8124-6f05f076f68e&urlhash=y5V8&isSdui=true&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BPXUW5QCCTWGt0LAspL%2BerA%3D%3D",
         tags: ["React", "Laravel"],
-        image: "https://media.licdn.com/dms/image/v2/D562DAQH5IYbzBvv-Jg/profile-treasury-document-cover-images_480/B56ZtKG0IlLEBM-/0/1766474862691?e=1768294800&v=beta&t=EXMPBarWyu_SXLxCwRHAZiQP5MMtokWqbk4xhMU-H3s"
+        image: CertificateNFA
     },
     {
         id: 2,
@@ -18,7 +23,7 @@ const certifications = [
         date: "Nov 2023",
         credentialLink: "https://www.linkedin.com/redir/redirect/?url=https%3A%2F%2Ffreecodecamp.org%2Fcertification%2FRyandra_Athaya%2Fresponsive-web-design&urlhash=lDLC&isSdui=true&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BbDB06dhzQ064P0hXehDKHw%3D%3D",
         tags: ["HTML/CSS", "Frontend"],
-        image: "https://media.licdn.com/dms/image/v2/D562DAQFBI1rOYzAa8A/profile-treasury-document-images_1920/B56ZtKJq1DGwAs-/1/1766475608872?e=1768435200&v=beta&t=BrhaPVbM807Y1qDXca17Aj0qnXSGE9ceu0LS_SHNwk4"
+        image: CertificateResponsiveWeb 
     },
     {
         id: 3,
@@ -27,16 +32,25 @@ const certifications = [
         date: "May 2023",
         credentialLink: "https://www.linkedin.com/redir/redirect/?url=https%3A%2F%2Fmikrotik.com%2Ftraining%2Fcertificates%2Fb264713c51e043d81cea&urlhash=HXS0&isSdui=true&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BPXUW5QCCTWGt0LAspL%2BerA%3D%3D",
         tags: ["Networking", "RouterOS"],
-        image: "https://media.licdn.com/dms/image/v2/D562DAQHJFAV_9zrfRg/profile-treasury-document-cover-images_1920/B56ZtKJV18HsBQ-/0/1766475523223?e=1768294800&v=beta&t=R2Otdt29H4nzD07eWcVShTjQyBiuLl4vSJrq5XlZyYs"
+        image: CertificateMTCNA
     },
     {
         id: 4,
         title: "Microsoft Office Specialist",
         issuer: "Certiport",
         date: "May 2023",
-        credentialLink: "https://www.linkedin.com/redir/redirect/?url=https%3A%2F%2Fsinufia.nfacademy.id%2Fcertificate-verification%2F12e13526-3b2f-483a-8124-6f05f076f68e&urlhash=y5V8&isSdui=true&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BPXUW5QCCTWGt0LAspL%2BerA%3D%3D",
+        credentialLink: "https://www.linkedin.com/redir/redirect/?url=https%3A%2F%2Fdrive.google.com%2Ffile%2Fd%2F1L5p5aRy5cN7G_hP7Bff1ES1uJVPOfi5A%2Fview%3Fusp%3Dsharing&urlhash=_oS9&isSdui=true&lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_certifications_details%3BPXUW5QCCTWGt0LAspL%2BerA%3D%3D",
         tags: ["Productivity", "Office"],
-        image: "https://media.licdn.com/dms/image/v2/D562DAQHqOlMS5zr9Tw/profile-treasury-document-cover-images_1280/B56ZtKJhevJEAw-/0/1766475570899?e=1768294800&v=beta&t=JhMUbzu9olxFIGL9DE9ZmYvDpksH14DSBGw1fHwv8j4"
+        image: CertificateMOS
+    },
+    {
+        id: 5,
+        title: "Junior Web Developer",
+        issuer: "Badan Nasional Sertifikasi Profesi (BNSP)",
+        date: "January 2026",
+        credentialLink: "https://drive.google.com/file/d/1a0t5nPyYHPA_cYhY7O9dbIZBdkCYQ3u0/view?usp=drive_link",
+        tags: ["HTML/CSS", "JavaScript", "React", "Laravel"],
+        image: CertificateBNSP
     }
 ];
 

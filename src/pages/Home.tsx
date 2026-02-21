@@ -10,9 +10,10 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Button } from "../components/ui/button";
+import ParticleBackground from "../components/ParticleBackground";
 
 const Home = () => {
-    const resumePath = "/cv.pdf"; 
+    const resumePath = "/cv.pdf";
 
     // Animation Variants
     const fadeInUp = {
@@ -53,15 +54,18 @@ const Home = () => {
 
     return (
         <div className="pt-10 relative flex flex-col min-h-screen overflow-hidden bg-zinc-50 text-zinc-900 selection:bg-zinc-900 selection:text-white font-sans">
-            
-            {/* Background: Subtle Spotlight Effect */}
-            <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-size[14px_24px]">
-                <div className="absolute left-0 right-0 top-0 -z-10 m-auto h-[310px] w-[310px] rounded-full bg-indigo-500 opacity-20 blur-[100px]" />
-                <div className="absolute right-0 bottom-0 -z-10 h-[310px] w-[310px] rounded-full bg-emerald-500 opacity-10 blur-[100px]" />
+
+            {/* Background: Interactive Particle Effect */}
+            <div className="absolute inset-0 overflow-hidden" style={{ zIndex: 0 }}>
+                {/* Soft ambient glows */}
+                <div className="absolute left-1/2 top-0 -translate-x-1/2 h-[400px] w-[600px] rounded-full bg-indigo-400 opacity-10 blur-[120px]" />
+                <div className="absolute right-0 bottom-0 h-[300px] w-[400px] rounded-full bg-violet-400 opacity-8 blur-[100px]" />
+                {/* Interactive canvas particle layer */}
+                <ParticleBackground />
             </div>
 
             <div className="relative z-10 flex flex-col flex-1">
-                
+
                 {/* Hero Section */}
                 <section className="flex-1 flex flex-col justify-center items-center text-center px-6 py-24 md:py-32">
                     <motion.div
@@ -82,7 +86,7 @@ const Home = () => {
                         </motion.div>
 
                         {/* Title with Gradient */}
-                        <motion.h1 
+                        <motion.h1
                             variants={fadeInUp}
                             className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 mb-6"
                         >
@@ -90,11 +94,11 @@ const Home = () => {
                         </motion.h1>
 
                         {/* Subtitle: Value Proposition */}
-                        <motion.p 
+                        <motion.p
                             variants={fadeInUp}
                             className="text-lg md:text-xl text-zinc-500 max-w-2xl mx-auto leading-relaxed mb-8"
                         >
-                            A <span className="text-zinc-900 font-semibold">Full Stack Developer</span> blending performance with aesthetics. 
+                            A <span className="text-zinc-900 font-semibold">Full Stack Developer</span> blending performance with aesthetics.
                             I build scalable solutions using <span className="text-zinc-900 font-medium">Laravel & React</span> that drive business growth.
                         </motion.p>
 
@@ -121,7 +125,7 @@ const Home = () => {
                                     </Link>
                                 </Button>
                             </motion.div>
-                            
+
                             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                                 <Button asChild variant="outline" size="lg" className="rounded-full px-8 h-12 text-sm font-medium border-zinc-200 bg-white/80 hover:bg-zinc-50 hover:text-zinc-900 backdrop-blur-sm">
                                     <Link to="/contact">Let's Talk</Link>
@@ -135,7 +139,7 @@ const Home = () => {
                 <section className="py-26 relative">
                     <div className="absolute inset-0backdrop-blur-3xl -z-10" />
                     <div className="container mx-auto px-6">
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -153,7 +157,7 @@ const Home = () => {
                             className="grid grid-cols-1 md:grid-cols-3 gap-6"
                         >
                             {techStack.map((tech, index) => (
-                                <motion.div 
+                                <motion.div
                                     key={index}
                                     variants={fadeInUp}
                                     whileHover={{ y: -5 }}
@@ -166,7 +170,7 @@ const Home = () => {
                                         <div className="h-12 w-12 rounded-xl bg-zinc-50 border border-zinc-100 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-white group-hover:shadow-md transition-all duration-300">
                                             {tech.icon}
                                         </div>
-                                        
+
                                         <h3 className="text-lg font-bold text-zinc-900 mb-2">{tech.title}</h3>
                                         <p className="text-sm text-zinc-500 leading-relaxed mb-6">
                                             {tech.description}
@@ -175,8 +179,8 @@ const Home = () => {
                                         {/* Keyword Tags for Recruiters */}
                                         <div className="flex flex-wrap gap-2 mt-auto">
                                             {tech.tags.map((tag) => (
-                                                <span 
-                                                    key={tag} 
+                                                <span
+                                                    key={tag}
                                                     className="px-2.5 py-1 text-[11px] font-medium rounded-md bg-zinc-100 text-zinc-600 border border-zinc-200 group-hover:bg-zinc-900 group-hover:text-zinc-50 group-hover:border-zinc-900 transition-colors duration-300"
                                                 >
                                                     {tag}

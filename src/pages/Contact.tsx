@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
 import { Mail, Github, Linkedin, ArrowUpRight, Copy, Check, FileText, Download } from "lucide-react";
 import { useState } from "react";
+import ParticleBackground from "../components/ParticleBackground";
 
 const Contact = () => {
     const [copied, setCopied] = useState(false);
     const email = "ryandra.athaya1705@gmail.com";
-    
-    const resumePath = "/cv.pdf"; 
+
+    const resumePath = "/cv.pdf";
 
     const handleCopyEmail = (e: React.MouseEvent) => {
         e.preventDefault();
@@ -16,12 +17,13 @@ const Contact = () => {
     };
 
     return (
-        <div className="min-h-screen bg-zinc-50 pt-24 pb-20 px-6 flex items-center justify-center">
+        <div className="relative min-h-screen bg-zinc-50 pt-24 pb-20 px-6 flex items-center justify-center overflow-hidden">
+            <ParticleBackground />
             <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className="w-full max-w-2xl bg-white border border-zinc-200 rounded-2xl p-8 md:p-12 shadow-sm text-center md:text-left"
+                className="relative z-10 w-full max-w-2xl bg-white/95 border border-zinc-200 rounded-2xl p-8 md:p-12 shadow-sm text-center md:text-left backdrop-blur-sm"
             >
                 {/* Header */}
                 <div className="mb-10">
@@ -35,11 +37,11 @@ const Contact = () => {
                 </div>
 
                 <div className="space-y-4">
-                    
+
                     {/* Primary Contact: Email */}
                     <div className="group relative flex items-center justify-between p-5 rounded-xl bg-zinc-50 border border-zinc-100 hover:bg-white hover:border-zinc-300 hover:shadow-md transition-all duration-300">
                         <a href={`mailto:${email}`} className="absolute inset-0 z-0" aria-label="Send email" />
-                        
+
                         <div className="flex items-center space-x-4 z-10">
                             <div className="p-3 bg-white border border-zinc-200 rounded-lg text-red-500 group-hover:border-zinc-400 group-hover:bg-red-500 group-hover:text-white transition-colors">
                                 <Mail size={24} />
@@ -53,7 +55,7 @@ const Contact = () => {
                         </div>
 
                         <div className="z-10 flex items-center gap-2">
-                            <button 
+                            <button
                                 onClick={handleCopyEmail}
                                 className="p-2 text-zinc-400 hover:text-zinc-900 hover:bg-zinc-100 rounded-md transition-colors relative"
                                 title="Copy Email"
@@ -109,7 +111,7 @@ const Contact = () => {
                 {/* Footer / CTA Buttons */}
                 <div className="mt-12 pt-8 border-t border-zinc-100 flex flex-col md:flex-row gap-4 justify-center">
                     {/* Send Message Button */}
-                    <a 
+                    <a
                         href={`mailto:${email}`}
                         className="inline-flex items-center justify-center px-8 py-3 text-sm font-medium text-white bg-zinc-900 rounded-full hover:bg-zinc-800 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-zinc-900/10"
                     >
@@ -118,7 +120,7 @@ const Contact = () => {
                     </a>
 
                     {/* Download CV Button */}
-                    <a 
+                    <a
                         href={resumePath}
                         target="_blank"
                         rel="noreferrer"
