@@ -53,16 +53,8 @@ const Home = () => {
     ];
 
     return (
-        <div className="pt-10 relative flex flex-col min-h-screen overflow-hidden bg-zinc-50 text-zinc-900 selection:bg-zinc-900 selection:text-white font-sans">
-
-            {/* Background: Interactive Particle Effect */}
-            <div className="absolute inset-0 overflow-hidden" style={{ zIndex: 0 }}>
-                {/* Soft ambient glows */}
-                <div className="absolute left-1/2 top-0 -translate-x-1/2 h-[400px] w-[600px] rounded-full bg-indigo-400 opacity-10 blur-[120px]" />
-                <div className="absolute right-0 bottom-0 h-[300px] w-[400px] rounded-full bg-violet-400 opacity-8 blur-[100px]" />
-                {/* Interactive canvas particle layer */}
-                <ParticleBackground />
-            </div>
+        <div className="pt-10 flex flex-col min-h-screen overflow-hidden bg-zinc-50 text-zinc-900 selection:bg-zinc-900 selection:text-white font-sans">
+            <ParticleBackground />
 
             <div className="relative z-10 flex flex-col flex-1">
 

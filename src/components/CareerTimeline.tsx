@@ -1,14 +1,46 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import timelineData from "@/data/CareerTimeLineData";
+import timelineData, { type CompanyIdentity } from "@/data/CareerTimeLineData";
+
+const CompanyLogoBadge = ({ company, companyIdentity }: { company: string; companyIdentity: CompanyIdentity }) => {
+    const [imageFailed, setImageFailed] = useState(false);
+    const shouldShowImage = Boolean(companyIdentity.logoSrc) && !imageFailed;
+
+    return (
+        <div
+            className={
+                shouldShowImage
+                    ? "mt-0.5 h-10 w-10 shrink-0 rounded-xl bg-white p-1 shadow-sm ring-1 ring-zinc-200 flex items-center justify-center"
+                    : `mt-0.5 h-10 w-10 shrink-0 rounded-xl bg-linear-to-br ${companyIdentity.gradientClass} shadow-sm ring-1 ring-white/70 flex items-center justify-center`
+            }
+        >
+            {shouldShowImage ? (
+                <img
+                    src={companyIdentity.logoSrc}
+                    alt={`${company} logo`}
+                    className="h-full w-full object-contain"
+                    onError={() => setImageFailed(true)}
+                />
+            ) : (
+                <span className="text-[10px] font-bold tracking-wider text-white">
+                    {companyIdentity.label}
+                </span>
+            )}
+        </div>
+    );
+};
 
 const CareerTimeline = () => {
     // State to track which item is currently expanded
     const [expandedId, setExpandedId] = useState<number | null>(null);
+    const [hoveredId, setHoveredId] = useState<number | null>(null);
+    const timelineItems = [...timelineData].reverse();
+
+    const openedId = hoveredId ?? expandedId;
 
     const toggleItem = (id: number) => {
-        setExpandedId(expandedId === id ? null : id);
+        setExpandedId((prev) => (prev === id ? null : id));
     };
 
     return (
@@ -16,8 +48,8 @@ const CareerTimeline = () => {
             <h2 className="text-xl font-bold mb-8 text-zinc-900 tracking-tight">Experience</h2>
 
             <div className="relative border-l border-zinc-200 ml-3 space-y-4 py-2">
-                {timelineData.map((item, index) => {
-                    const isOpen = expandedId === item.id;
+                {timelineItems.map((item, index) => {
+                    const isOpen = openedId === item.id;
 
                     return (
                         <motion.div
@@ -38,17 +70,22 @@ const CareerTimeline = () => {
                             <motion.div 
                                 layout
                                 onClick={() => toggleItem(item.id)}
+                                onMouseEnter={() => setHoveredId(item.id)}
+                                onMouseLeave={() => setHoveredId((prev) => (prev === item.id ? null : prev))}
                                 className={`p-4 rounded-xl cursor-pointer transition-colors duration-300 border border-transparent
                                 ${isOpen ? "bg-zinc-50 border-zinc-200 shadow-sm" : "hover:bg-zinc-50/50 hover:border-zinc-100"}`}
                             >
                                 {/* Header Row */}
                                 <div className="flex justify-between items-start gap-4">
-                                    <div>
-                                        <h3 className={`text-base font-semibold transition-colors ${isOpen ? "text-zinc-900" : "text-zinc-700"}`}>
-                                            {item.role}
-                                        </h3>
-                                        <div className="text-sm text-zinc-500 mt-0.5">
-                                            {item.company}
+                                    <div className="flex items-start gap-3">
+                                        <CompanyLogoBadge company={item.company} companyIdentity={item.companyIdentity} />
+                                        <div>
+                                            <h3 className={`text-base font-semibold transition-colors ${isOpen ? "text-zinc-900" : "text-zinc-700"}`}>
+                                                {item.role}
+                                            </h3>
+                                            <div className="text-sm text-zinc-500 mt-0.5">
+                                                {item.company}
+                                            </div>
                                         </div>
                                     </div>
 

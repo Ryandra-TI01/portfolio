@@ -10,13 +10,13 @@ const About = () => {
     return (
         <div className="min-h-screen bg-zinc-50 text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white pt-32 pb-20">
             <ParticleBackground />
-            <div className="container mx-auto px-6 max-w-5xl">
+            <div className="container mx-auto max-w-5xl">
                 {/* Header Section */}
                 <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4 }}
-                    className="relative z-10 flex flex-col-reverse md:flex-row gap-12 items-start px-6 md:px-10 py-10 md:py-12"
+                    className="relative z-10 flex flex-col-reverse md:flex-row gap-12 items-start  py-10 md:py-12"
                 >
                     <div className="flex-1 space-y-6">
                         <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">

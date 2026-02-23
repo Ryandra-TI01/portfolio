@@ -1,7 +1,7 @@
-import taskFlow from "../assets/taskFlow.webp";
-import bookStore from "../assets/bookStore.webp";
-import hris from "../assets/hris.webp";
-import healthTrack from "../assets/healthTrack.webp";
+import taskFlow from "../assets/projects/taskFlow.webp";
+import bookStore from "../assets/projects/bookStore.webp";
+import hris from "../assets/projects/hris.webp";
+import healthTrack from "../assets/projects/healthTrack.webp";
 
 export interface RepoUrl {
     label: string;

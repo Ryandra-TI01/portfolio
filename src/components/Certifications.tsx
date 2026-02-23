@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
 import { Award, ExternalLink, Calendar } from "lucide-react";
-import CertificateNFA from "../assets/CertificateNFA.webp";
-import CertificateResponsiveWeb from "../assets/CertificateResponsiveWeb.webp";
-import CertificateMTCNA from "../assets/CertificateMTCNA.webp";
-import CertificateMOS from "../assets/CertificateMOS.webp";
-import CertificateBNSP from "../assets/CertificateBNSP.webp";
+import CertificateNFA from "../assets/certificates/CertificateNFA.webp";
+import CertificateResponsiveWeb from "../assets/certificates/CertificateResponsiveWeb.webp";
+import CertificateMTCNA from "../assets/certificates/CertificateMTCNA.webp";
+import CertificateMOS from "../assets/certificates/CertificateMOS.webp";
+import CertificateBNSP from "../assets/certificates/CertificateBNSP.webp";
 
 const certifications = [
     {
