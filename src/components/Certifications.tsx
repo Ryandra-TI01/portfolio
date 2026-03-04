@@ -5,6 +5,7 @@ import CertificateResponsiveWeb from "../assets/certificates/CertificateResponsi
 import CertificateMTCNA from "../assets/certificates/CertificateMTCNA.webp";
 import CertificateMOS from "../assets/certificates/CertificateMOS.webp";
 import CertificateBNSP from "../assets/certificates/CertificateBNSP.webp";
+import CertificatePanitiaLinux from "../assets/certificates/CertificatePanitiaLinux.webp";
 
 const certifications = [
     {
@@ -51,6 +52,15 @@ const certifications = [
         credentialLink: "https://drive.google.com/file/d/1a0t5nPyYHPA_cYhY7O9dbIZBdkCYQ3u0/view?usp=drive_link",
         tags: ["HTML/CSS", "JavaScript", "React", "Laravel"],
         image: CertificateBNSP
+    },
+    {
+        id: 6,
+        title: "Panitia Seminar",
+        issuer: "IT Club Linux & NFSCC",
+        date: "February 2024",
+        credentialLink: "https://drive.google.com/file/d/1pstmm9B7bnNExGgozeHP39XXP5mDxx80/view?usp=drive_link",
+        tags: ["", "", "", ""],
+        image: CertificatePanitiaLinux
     }
 ];
 
