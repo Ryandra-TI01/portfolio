@@ -2,10 +2,17 @@ import { projects } from "../data/projects";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Github, ExternalLink, FolderGit2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import PageTransition from "../components/layout/PageTransition";
+import SEO from "../components/SEO";
 
 const Projects = () => {
     return (
-        <div className="min-h-screen bg-zinc-50 pt-20 md:pt-28 pb-16 md:pb-24 px-4 sm:px-6 md:px-8">
+        <PageTransition>
+        <SEO
+            title="Projects"
+            description="Explore a selection of projects by Ryandra Athaya Saleh — full-stack applications built with Laravel, React, and modern web technologies."
+        />
+        <div className="min-h-screen bg-zinc-50 pt-20 md:pt-28 pb-16 md:pb-24 px-4 sm:px-6 md:px-8 dark:bg-zinc-900">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -14,10 +21,10 @@ const Projects = () => {
             >
                 {/* Header Section */}
                 <div className="mb-12 md:mb-16 space-y-4 md:space-y-6">
-                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-900 tracking-tight">
+                    <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-zinc-900 tracking-tight dark:text-zinc-100">
                         Featured Projects
                     </h1>
-                    <p className="text-zinc-500 text-base sm:text-lg md:text-xl max-w-2xl leading-relaxed">
+                    <p className="text-zinc-500 text-base sm:text-lg md:text-xl max-w-2xl leading-relaxed dark:text-zinc-400">
                         A selection of my best work, spanning frontend applications to full-stack systems.
                         Each project represents a unique challenge and solution.
                     </p>
@@ -32,14 +39,15 @@ const Projects = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: index * 0.1, duration: 0.4 }}
                             viewport={{ once: true, margin: "-50px" }}
-                            className="group flex flex-col h-full bg-white border border-zinc-200 rounded-2xl overflow-hidden hover:border-zinc-400 hover:shadow-xl hover:shadow-zinc-200/50 transition-all duration-300"
+                            className="group flex flex-col h-full bg-white border border-zinc-200 rounded-2xl overflow-hidden hover:border-zinc-400 hover:shadow-xl hover:shadow-zinc-200/50 transition-all duration-300 dark:bg-zinc-800 dark:border-zinc-700 dark:hover:border-zinc-500 dark:hover:shadow-zinc-900/50"
                         >
                             {/* Image Area */}
-                            <div className="relative w-full aspect-video overflow-hidden bg-zinc-100 border-b border-zinc-100">
+                            <div className="relative w-full aspect-video overflow-hidden bg-zinc-100 border-b border-zinc-100 dark:bg-zinc-700 dark:border-zinc-700">
                                 {project.image ? (
                                     <img
                                         src={project.image}
                                         alt={project.title}
+                                        loading="lazy"
                                         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                                     />
                                 ) : (
@@ -58,7 +66,7 @@ const Projects = () => {
                             {/* Content Area */}
                             <div className="flex-1 p-6 md:p-8 flex flex-col">
                                 <div className="flex justify-between items-start mb-4 gap-4">
-                                    <h3 className="text-xl md:text-2xl font-bold text-zinc-900 leading-tight group-hover:text-black transition-colors">
+                                    <h3 className="text-xl md:text-2xl font-bold text-zinc-900 leading-tight group-hover:text-black transition-colors dark:text-zinc-100 dark:group-hover:text-zinc-300">
                                         <Link to={`/projects/${project.id}`}>
                                             {project.title}
                                         </Link>
@@ -70,7 +78,7 @@ const Projects = () => {
                                                 href={Array.isArray(project.repoUrl) ? project.repoUrl[0].url : project.repoUrl}
                                                 target="_blank"
                                                 rel="noreferrer"
-                                                className="text-zinc-400 hover:text-zinc-900 transition-colors"
+                                                className="text-zinc-400 hover:text-zinc-900 transition-colors dark:hover:text-zinc-100"
                                                 title="View Code"
                                             >
                                                 <Github size={20} />
@@ -81,7 +89,7 @@ const Projects = () => {
                                                 href={Array.isArray(project.liveUrl) ? project.liveUrl[0].url : project.liveUrl}
                                                 target="_blank"
                                                 rel="noreferrer"
-                                                className="text-zinc-400 hover:text-zinc-900 transition-colors"
+                                                className="text-zinc-400 hover:text-zinc-900 transition-colors dark:hover:text-zinc-100"
                                                 title="View Live Site"
                                             >
                                                 <ExternalLink size={20} />
@@ -90,23 +98,23 @@ const Projects = () => {
                                     </div>
                                 </div>
 
-                                <p className="text-zinc-500 text-base leading-relaxed mb-6 line-clamp-3">
+                                <p className="text-zinc-500 text-base leading-relaxed mb-6 line-clamp-3 dark:text-zinc-400">
                                     {project.description}
                                 </p>
 
                                 {/* Footer */}
-                                <div className="mt-auto pt-6 border-t border-zinc-100 flex items-center justify-between">
+                                <div className="mt-auto pt-6 border-t border-zinc-100 flex items-center justify-between dark:border-zinc-700">
                                     <div className="flex flex-wrap gap-2">
                                         {project.techStack.slice(0, 3).map((tech) => (
                                             <span
                                                 key={tech}
-                                                className="text-xs font-medium text-zinc-600 bg-zinc-100 px-2.5 py-1 rounded-md border border-zinc-200/50"
+                                                className="text-xs font-medium text-zinc-600 bg-zinc-100 px-2.5 py-1 rounded-md border border-zinc-200/50 dark:text-zinc-300 dark:bg-zinc-700 dark:border-zinc-600"
                                             >
                                                 {tech}
                                             </span>
                                         ))}
                                         {project.techStack.length > 3 && (
-                                            <span className="text-xs text-zinc-400 py-1 pl-1 font-medium">
+                                            <span className="text-xs text-zinc-400 py-1 pl-1 font-medium dark:text-zinc-500">
                                                 +{project.techStack.length - 3} more
                                             </span>
                                         )}
@@ -114,7 +122,7 @@ const Projects = () => {
 
                                     <Link
                                         to={`/projects/${project.id}`}
-                                        className="text-sm font-semibold text-zinc-900 flex items-center gap-1 group/link pl-4"
+                                        className="text-sm font-semibold text-zinc-900 flex items-center gap-1 group/link pl-4 dark:text-zinc-100"
                                     >
                                         Details
                                         <ArrowUpRight
@@ -129,6 +137,7 @@ const Projects = () => {
                 </div>
             </motion.div>
         </div>
+        </PageTransition>
     );
 };
 

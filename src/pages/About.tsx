@@ -1,14 +1,21 @@
 import { motion } from "framer-motion";
 import andraAquarium from "../assets/andraAquarium.webp";
 import CareerTimeline from "../components/CareerTimeline";
-import skills, { type Skill, type SkillCategory } from "@/data/SkillsData";
+import skills, { getSkillConfig, type SkillCategory } from "@/data/SkillsData";
 import { Download } from "lucide-react";
 import Certifications from "@/components/Certifications";
 import ParticleBackground from "../components/ParticleBackground";
+import PageTransition from "../components/layout/PageTransition";
+import SEO from "../components/SEO";
 const About = () => {
     const resumePath = "/cv.pdf";
     return (
-        <div className="min-h-screen bg-zinc-50 text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white pt-32 pb-20">
+        <PageTransition>
+        <SEO
+            title="About"
+            description="Learn more about Ryandra Athaya Saleh — a Full Stack Developer with expertise in Laravel, React, and modern web technologies."
+        />
+        <div className="min-h-screen bg-zinc-50 text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white pt-32 pb-20 dark:bg-zinc-900 dark:text-zinc-100">
             <ParticleBackground />
             <div className="container mx-auto max-w-5xl">
                 {/* Header Section */}
@@ -16,13 +23,13 @@ const About = () => {
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4 }}
-                    className="relative z-10 flex flex-col-reverse md:flex-row gap-12 items-start  py-10 md:py-12"
+                    className="flex flex-col-reverse md:flex-row gap-12 items-start  py-10 md:py-12"
                 >
                     <div className="flex-1 space-y-6">
-                        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900">
+                        <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
                             About Me
                         </h1>
-                        <div className="space-y-4 text-zinc-600 leading-relaxed text-base md:text-lg">
+                        <div className="space-y-4 text-zinc-600 leading-relaxed text-base md:text-lg dark:text-zinc-400">
                             <p>
                                 I am a Software Engineer based in Indonesia, specializing in building robust web applications using <strong>Laravel</strong> and <strong>React</strong>.
                             </p>
@@ -55,6 +62,7 @@ const About = () => {
                                 <img
                                     src={andraAquarium}
                                     alt="Ryandra Athaya"
+                                    loading="lazy"
                                     className="w-full h-full object-cover scale-105 group-hover:scale-110 transition-transform duration-500"
                                 />
                             </div>
@@ -64,7 +72,7 @@ const About = () => {
 
                 {/* Technical Proficiency Grid */}
                 <div className="mb-20">
-                    <h2 className="text-xl font-bold mb-8 text-zinc-900 tracking-tight">Technical Proficiency</h2>
+                    <h2 className="text-xl font-bold mb-8 text-zinc-900 tracking-tight dark:text-zinc-100">Technical Proficiency</h2>
                     <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
                         {skills.map((group: SkillCategory, idx: number) => (
                             <motion.div
@@ -74,43 +82,30 @@ const About = () => {
                                 transition={{ delay: idx * 0.1, duration: 0.5 }}
                                 viewport={{ once: true }}
                             >
-                                <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-5 border-b border-zinc-100 pb-2">
+                                <h3 className="text-xs font-bold text-zinc-400 uppercase tracking-widest mb-5 border-b border-zinc-100 pb-2 dark:text-zinc-500 dark:border-zinc-800">
                                     {group.category}
                                 </h3>
                                 <ul className="space-y-3">
-                                    {group.items.map((skill: Skill) => (
-                                        <li
-                                            key={skill.name}
-                                            className={`
-                                                    flex items-center gap-3 text-zinc-600 group cursor-pointer
-                                                    transition-all duration-300
-                                                    hover:scale-105 
-                                                    rounded-lg px-2 py-2
-                                                `}
-                                        >
-                                            {/* Icon container */}
-                                            <span
-                                                className={`
-                                                    shrink-0 w-8 h-8 flex items-center justify-center rounded-md
-                                                    transition-all duration-300
-                                                    group-hover:shadow-md group-hover:rotate-3
-                                                    ${skill.color}
-                                                    `}
+                                    {group.items.map((skillName: string) => {
+                                        const skill = getSkillConfig(skillName);
+                                        return (
+                                            <li
+                                                key={skill.name}
+                                                className="flex items-center gap-3 text-zinc-600 dark:text-zinc-400 group cursor-pointer transition-all duration-300 hover:scale-105 rounded-lg px-2 py-2"
                                             >
-                                                {skill.icon}
-                                            </span>
-
-                                            {/* Text Name */}
-                                            <span
-                                                className={`
-                                                    text-sm font-medium transition-colors
-                                                    ${skill.textColor}
-                                                    `}
-                                            >
-                                                {skill.name}
-                                            </span>
-                                        </li>
-                                    ))}
+                                                <span
+                                                    className={`shrink-0 w-8 h-8 flex items-center justify-center rounded-md transition-all duration-300 group-hover:shadow-md group-hover:rotate-3 ${skill.color}`}
+                                                >
+                                                    {skill.icon}
+                                                </span>
+                                                <span
+                                                    className={`text-sm font-medium transition-colors ${skill.textColor}`}
+                                                >
+                                                    {skill.name}
+                                                </span>
+                                            </li>
+                                        );
+                                    })}
                                 </ul>
                             </motion.div>
                         ))}
@@ -123,6 +118,7 @@ const About = () => {
                 <Certifications />
             </div>
         </div>
+        </PageTransition>
     );
 };
 

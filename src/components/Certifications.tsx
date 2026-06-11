@@ -67,7 +67,7 @@ const certifications = [
 const Certifications = () => {
     return (
         <div className="max-w-5xl mt-20">
-            <h2 className="text-xl font-bold mb-8 text-zinc-900 tracking-tight flex items-center gap-2">
+            <h2 className="text-xl font-bold mb-8 text-zinc-900 tracking-tight flex items-center gap-2 dark:text-zinc-100">
                 Certifications
                 <span className="text-zinc-300 text-sm font-normal">({certifications.length})</span>
             </h2>
@@ -83,7 +83,7 @@ const Certifications = () => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3, delay: index * 0.1 }}
                         viewport={{ once: true }}
-                        className="group relative flex flex-col p-5 bg-white border border-zinc-200 rounded-xl overflow-hidden hover:border-zinc-400 hover:shadow-lg transition-all duration-300"
+                        className="group relative flex flex-col p-5 bg-white border border-zinc-200 rounded-xl overflow-hidden hover:border-zinc-400 hover:shadow-lg transition-all duration-300 dark:bg-zinc-800 dark:border-zinc-700 dark:hover:border-zinc-500"
                     >
                         {/* ========================================== */}
                         {/* HOVER IMAGE LAYER                          */}
@@ -96,6 +96,7 @@ const Certifications = () => {
                             <img 
                                 src={cert.image} 
                                 alt={`${cert.title} preview`} 
+                                loading="lazy"
                                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                             />
                         </div>
@@ -115,29 +116,29 @@ const Certifications = () => {
                                 {/* Icon Box */}
                                 <div className="w-10 h-10 rounded-lg bg-zinc-50 border border-zinc-100 flex items-center justify-center text-zinc-500 
                                     transition-colors duration-300 
-                                    group-hover:bg-white/20 group-hover:text-white group-hover:border-white/20 backdrop-blur-sm">
+                                    group-hover:bg-white/20 group-hover:text-white group-hover:border-white/20 backdrop-blur-sm dark:bg-zinc-700 dark:border-zinc-600 dark:text-zinc-400">
                                     <Award size={20} />
                                 </div>
 
                                 {/* External Link Icon */}
-                                <div className="text-zinc-300 transition-colors duration-300 group-hover:text-white">
+                                <div className="text-zinc-300 transition-colors duration-300 group-hover:text-white dark:text-zinc-500">
                                     <ExternalLink size={16} />
                                 </div>
                             </div>
 
                             {/* Main Text Content */}
                             <div className="flex-1">
-                                <h3 className="font-semibold text-zinc-900 mb-1 line-clamp-1 pr-6 transition-colors duration-300 group-hover:text-white">
+                                <h3 className="font-semibold text-zinc-900 mb-1 line-clamp-1 pr-6 transition-colors duration-300 group-hover:text-white dark:text-zinc-100">
                                     {cert.title}
                                 </h3>
-                                <p className="text-sm text-zinc-500 mb-4 transition-colors duration-300 group-hover:text-zinc-300">
+                                <p className="text-sm text-zinc-500 mb-4 transition-colors duration-300 group-hover:text-zinc-300 dark:text-zinc-400">
                                     {cert.issuer}
                                 </p>
                             </div>
 
                             {/* Footer: Date & Tags */}
-                            <div className="flex items-center justify-between mt-auto pt-4 border-t border-zinc-100 transition-colors duration-300 group-hover:border-white/20">
-                                <div className="flex items-center gap-1.5 text-xs font-medium text-zinc-400 transition-colors duration-300 group-hover:text-zinc-300">
+                            <div className="flex items-center justify-between mt-auto pt-4 border-t border-zinc-100 transition-colors duration-300 group-hover:border-white/20 dark:border-zinc-700">
+                                <div className="flex items-center gap-1.5 text-xs font-medium text-zinc-400 transition-colors duration-300 group-hover:text-zinc-300 dark:text-zinc-500">
                                     <Calendar size={12} />
                                     {cert.date}
                                 </div>
@@ -146,7 +147,7 @@ const Certifications = () => {
                                     <div className="flex gap-1">
                                         <span className="text-[10px] uppercase tracking-wider font-semibold px-2 py-1 rounded transition-colors duration-300 
                                             text-zinc-500 bg-zinc-100 
-                                            group-hover:text-white group-hover:bg-white/20 group-hover:backdrop-blur-md">
+                                            group-hover:text-white group-hover:bg-white/20 group-hover:backdrop-blur-md dark:text-zinc-400 dark:bg-zinc-700">
                                             {cert.tags[0]}
                                         </span>
                                     </div>

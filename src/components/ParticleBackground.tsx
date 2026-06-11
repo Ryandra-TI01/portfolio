@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import { useTheme } from "../context/ThemeContext";
 
 interface Particle {
     x: number;
@@ -16,15 +17,28 @@ const PARTICLE_COUNT = 120;
 const MOUSE_RADIUS = 200;
 const MOUSE_STRENGTH = 0.5;
 
-// Palet biru terang yang mendekati visual antigravity.google
-const COLORS = [
-    "37, 99, 235",   // Vibrant Blue (Biru terang)
-    "147, 51, 234",  // Deep Purple (Ungu pekat)
-    "6, 182, 212",   // Bright Cyan (Biru muda cerah)
-    "236, 72, 153",  // Pink Magenta (Merah muda tegas)
+/** Brighter colors for light backgrounds */
+const COLORS_LIGHT = [
+    "37, 99, 235",
+    "147, 51, 234",
+    "6, 182, 212",
+    "236, 72, 153",
 ];
 
-function createParticle(width: number, height: number): Particle {
+/** Lighter, more vibrant colors for dark backgrounds */
+const COLORS_DARK = [
+    "96, 165, 250",
+    "196, 167, 255",
+    "103, 232, 249",
+    "251, 146, 183",
+];
+
+function pickColor(theme: "light" | "dark"): string {
+    const palette = theme === "dark" ? COLORS_DARK : COLORS_LIGHT;
+    return palette[Math.floor(Math.random() * palette.length)];
+}
+
+function createParticle(width: number, height: number, theme: "light" | "dark"): Particle {
     const x = Math.random() * width;
     const y = Math.random() * height;
     const baseVx = (Math.random() - 0.5) * 0.8;
@@ -38,9 +52,15 @@ function createParticle(width: number, height: number): Particle {
         baseVx,
         baseVy,
         size: Math.random() * 1.6 + 0.8,
-        opacity: Math.random() * 0.35 + 0.25,
-        color: COLORS[Math.floor(Math.random() * COLORS.length)],
+        opacity: theme === "dark" ? Math.random() * 0.45 + 0.3 : Math.random() * 0.35 + 0.25,
+        color: pickColor(theme),
     };
+}
+
+function scaleParticle(p: Particle, fromW: number, fromH: number, toW: number, toH: number): Particle {
+    const scaleX = toW / (fromW || 1);
+    const scaleY = toH / (fromH || 1);
+    return { ...p, x: p.x * scaleX, y: p.y * scaleY };
 }
 
 const ParticleBackground = () => {
@@ -48,6 +68,9 @@ const ParticleBackground = () => {
     const mouse = useRef({ x: -9999, y: -9999 });
     const particlesRef = useRef<Particle[]>([]);
     const animFrameRef = useRef<number>(0);
+    const prevDimsRef = useRef({ w: 0, h: 0 });
+    const resizeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const { theme } = useTheme();
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -55,16 +78,62 @@ const ParticleBackground = () => {
         const ctx = canvas.getContext("2d");
         if (!ctx) return;
 
-        const resize = () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            particlesRef.current = Array.from({ length: PARTICLE_COUNT }, () =>
-                createParticle(canvas.width, canvas.height)
-            );
+        let particles = particlesRef.current;
+        let prevW = prevDimsRef.current.w;
+        let prevH = prevDimsRef.current.h;
+
+        const applyResize = (newW: number, newH: number) => {
+            // Validate: skip if dimensions are clearly wrong (during transitions)
+            if (newW <= 0 || newH <= 0 || newW > window.screen.width * 2 || newH > window.screen.height * 2) {
+                return;
+            }
+
+            // Aspect ratio safety: if aspect ratio changed drastically, reset particles
+            // (not scale) to avoid the "squished" effect
+            const prevAspect = prevW > 0 && prevH > 0 ? prevW / prevH : 1;
+            const newAspect = newW / newH;
+            const aspectRatioDrift = Math.abs(prevAspect - newAspect) / prevAspect;
+
+            canvas.width = newW;
+            canvas.height = newH;
+
+            if (particles.length === 0 || prevW <= 0 || prevH <= 0 || aspectRatioDrift > 0.15) {
+                // First init, full reset, or aspect ratio changed too much → recreate
+                particles = Array.from({ length: PARTICLE_COUNT }, () =>
+                    createParticle(newW, newH, theme)
+                );
+                particlesRef.current = particles;
+            } else {
+                // Aspect ratio is stable → scale existing particles
+                for (let i = 0; i < particles.length; i++) {
+                    const scaled = scaleParticle(particles[i], prevW, prevH, newW, newH);
+                    particles[i] = scaled;
+                }
+            }
+
+            prevW = newW;
+            prevH = newH;
+            prevDimsRef.current = { w: prevW, h: prevH };
         };
 
-        resize();
-        window.addEventListener("resize", resize);
+        const debouncedResize = () => {
+            // Clear previous timeout
+            if (resizeTimeoutRef.current) {
+                clearTimeout(resizeTimeoutRef.current);
+            }
+
+            // Debounce: wait 100ms for resize events to settle
+            resizeTimeoutRef.current = setTimeout(() => {
+                applyResize(window.innerWidth, window.innerHeight);
+            }, 100);
+        };
+
+        // Defer initial setup so canvas is fully laid out after page transitions
+        const initTimer = setTimeout(() => {
+            applyResize(window.innerWidth, window.innerHeight);
+        }, 60);
+
+        window.addEventListener("resize", debouncedResize);
 
         const handleMouseMove = (e: MouseEvent) => {
             mouse.current = { x: e.clientX, y: e.clientY };
@@ -80,7 +149,7 @@ const ParticleBackground = () => {
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            for (const p of particlesRef.current) {
+            for (const p of particles) {
                 const dx = mouse.current.x - p.x;
                 const dy = mouse.current.y - p.y;
                 const dist = Math.sqrt(dx * dx + dy * dy);
@@ -109,7 +178,6 @@ const ParticleBackground = () => {
                 ctx.fill();
             }
 
-            const particles = particlesRef.current;
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
                     const a = particles[i];
@@ -120,7 +188,8 @@ const ParticleBackground = () => {
                     const maxDist = 100;
 
                     if (dist < maxDist) {
-                        const alpha = (1 - dist / maxDist) * 0.16;
+                        const lineAlpha = theme === "dark" ? 0.22 : 0.16;
+                        const alpha = (1 - dist / maxDist) * lineAlpha;
                         ctx.beginPath();
                         ctx.moveTo(a.x, a.y);
                         ctx.lineTo(b.x, b.y);
@@ -137,18 +206,23 @@ const ParticleBackground = () => {
         animate();
 
         return () => {
+            clearTimeout(initTimer);
+            if (resizeTimeoutRef.current) {
+                clearTimeout(resizeTimeoutRef.current);
+            }
             cancelAnimationFrame(animFrameRef.current);
-            window.removeEventListener("resize", resize);
+            window.removeEventListener("resize", debouncedResize);
             window.removeEventListener("mousemove", handleMouseMove);
             window.removeEventListener("mouseleave", handleMouseLeave);
         };
-    }, []);
+    }, [theme]);
 
     return (
         <canvas
             ref={canvasRef}
-            className="absolute inset-0 w-full h-full pointer-events-none"
+            className="fixed inset-0 w-screen h-screen pointer-events-none"
             style={{ zIndex: 0 }}
+            aria-hidden="true"
         />
     );
 };

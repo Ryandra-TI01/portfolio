@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Github, FileText } from "lucide-react";
+import { Menu, X, Github, FileText, Moon, Sun } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "../../context/ThemeContext";
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const { theme, toggleTheme } = useTheme();
     const location = useLocation();
 
     // Handle scroll for glass effect
@@ -22,6 +24,7 @@ const Navbar = () => {
         { name: "Home", path: "/" },
         { name: "About", path: "/about" },
         { name: "Projects", path: "/projects" },
+        // { name: "Blog", path: "/blog" },
         { name: "Contact", path: "/contact" },
     ];
 
@@ -29,23 +32,24 @@ const Navbar = () => {
         <nav
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
                 scrolled || isOpen
-                    ? "bg-white/80 backdrop-blur-md border-b border-zinc-100 py-3"
+                    ? "bg-white/80 backdrop-blur-md border-b border-zinc-100 py-3 dark:bg-zinc-900/80 dark:border-zinc-800"
                     : "bg-transparent py-5"
             }`}
         >
             <div className="container mx-auto px-6 flex items-center justify-between">
                 {/* Logo */}
-                <Link to="/" className="text-xl font-bold tracking-tight text-zinc-900 z-50">
+                <Link to="/" className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100 z-50">
                     ryandra.dev
                 </Link>
 
                 {/* Desktop Menu */}
-                <div className="hidden md:flex items-center gap-1">
+                <div className="hidden md:flex items-center gap-1" role="navigation" aria-label="Main navigation">
                     {navLinks.map((link) => (
                         <Link
                             key={link.path}
                             to={link.path}
-                            className="relative px-4 py-2 text-sm font-medium text-zinc-600 hover:text-zinc-900 transition-colors"
+                            className="relative px-4 py-2 text-sm font-medium text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100 transition-colors"
+                            aria-current={location.pathname === link.path ? "page" : undefined}
                         >
                             {/* "Magic" Active State Background */}
                             {location.pathname === link.path && (
@@ -59,8 +63,17 @@ const Navbar = () => {
                         </Link>
                     ))}
                     
+                    {/* Theme Toggle */}
+                    <button
+                        onClick={toggleTheme}
+                        className="ml-3 p-2.5 rounded-full text-zinc-500 hover:text-zinc-900 hover:bg-zinc-100 transition-colors focus:outline-none"
+                        aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+                    >
+                        {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+                    </button>
+
                     {/* Recruiter Action: Resume or Github */}
-                    <div className="ml-4 pl-4 border-l border-zinc-200">
+                    <div className="ml-3 pl-4 border-l border-zinc-200">
                         <a
                             href="https://github.com/Ryandra-TI01"
                             target="_blank"
@@ -91,16 +104,20 @@ const Navbar = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -20 }}
                         transition={{ duration: 0.2 }}
-                        className="absolute top-0 left-0 right-0 min-h-screen bg-white pt-24 px-6 md:hidden border-b border-zinc-100"
+                        className="absolute top-0 left-0 right-0 min-h-screen bg-white pt-24 px-6 md:hidden border-b border-zinc-100 dark:bg-zinc-900 dark:border-zinc-800"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label="Mobile navigation menu"
                     >
-                        <div className="flex flex-col space-y-4">
+                        <div className="flex flex-col space-y-4" role="navigation" aria-label="Mobile navigation">
                             {navLinks.map((link) => (
                                 <Link
                                     key={link.path}
                                     to={link.path}
                                     className={`text-2xl font-medium tracking-tight ${
-                                        location.pathname === link.path ? "text-zinc-900" : "text-zinc-400"
+                                        location.pathname === link.path ? "text-zinc-900 dark:text-zinc-100" : "text-zinc-400"
                                     }`}
+                                    aria-current={location.pathname === link.path ? "page" : undefined}
                                 >
                                     {link.name}
                                 </Link>
@@ -108,6 +125,14 @@ const Navbar = () => {
                             
                             <hr className="border-zinc-100 my-4" />
                             
+                            <button
+                                onClick={toggleTheme}
+                                className="flex items-center gap-3 text-lg font-medium text-zinc-900"
+                            >
+                                {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+                                {theme === "dark" ? "Light Mode" : "Dark Mode"}
+                            </button>
+
                             <a
                                 href="https://github.com/Ryandra-TI01"
                                 target="_blank"
