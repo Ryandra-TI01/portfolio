@@ -15,8 +15,6 @@ const About = lazy(() => import("./pages/About"));
 const Projects = lazy(() => import("./pages/Projects"));
 const ProjectDetail = lazy(() => import("./pages/ProjectDetail"));
 const Contact = lazy(() => import("./pages/Contact"));
-// const Blog = lazy(() => import("./pages/Blog"));
-const BlogPost = lazy(() => import("./pages/BlogPost"));
 
 const LoadingFallback = () => (
     <div className="flex items-center justify-center min-h-[60vh]">
@@ -50,7 +48,7 @@ function AppContent() {
                                 <Route path="/projects/:id" element={<ProjectDetail />} />
                                 <Route path="/contact" element={<Contact />} />
                                 {/* <Route path="/blog" element={<Blog />} /> */}
-                                <Route path="/blog/:slug" element={<BlogPost />} />
+                                {/* <Route path="/blog/:slug" element={<BlogPost />} /> */}
                             </Routes>
                         </Suspense>
                     </AnimatePresence>

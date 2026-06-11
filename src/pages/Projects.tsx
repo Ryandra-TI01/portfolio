@@ -4,6 +4,7 @@ import { ArrowUpRight, Github, ExternalLink, FolderGit2 } from "lucide-react";
 import { Link } from "react-router-dom";
 import PageTransition from "../components/layout/PageTransition";
 import SEO from "../components/SEO";
+import ParticleBackground from "@/components/ParticleBackground";
 
 const Projects = () => {
     return (
@@ -13,6 +14,7 @@ const Projects = () => {
             description="Explore a selection of projects by Ryandra Athaya Saleh — full-stack applications built with Laravel, React, and modern web technologies."
         />
         <div className="min-h-screen bg-zinc-50 pt-20 md:pt-28 pb-16 md:pb-24 px-4 sm:px-6 md:px-8 dark:bg-zinc-900">
+            <ParticleBackground />
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
