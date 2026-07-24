@@ -5,6 +5,7 @@ import { ArrowLeft, Layers, Zap, AlertCircle, CheckCircle2 } from "lucide-react"
 import { projects } from "../data/projects";
 import { Button } from "../components/ui/button";
 import ProjectRepoLinks from "../components/ProjectRepoLinks";
+import ProjectGallery from "../components/ProjectGallery";
 import ParticleBackground from "../components/ParticleBackground";
 import PageTransition from "../components/layout/PageTransition";
 import SEO from "../components/SEO";
@@ -87,24 +88,12 @@ const ProjectDetail = () => {
                     </div>
                 </header>
 
-                {/* Image Showcase */}
+                {/* Image Gallery */}
                 <div className="mb-16">
-                    <div className="rounded-2xl border border-zinc-200 bg-white p-2 shadow-sm dark:border-zinc-700 dark:bg-zinc-800">
-                        <div className="relative aspect-video overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-700">
-                            {project.image ? (
-                                <img
-                                    src={project.image}
-                                    alt={project.title}
-                                    loading="lazy"
-                                    className="w-full h-full object-cover"
-                                />
-                            ) : (
-                                <div className="w-full h-full flex items-center justify-center text-zinc-300">
-                                    <span className="font-medium">No Preview Available</span>
-                                </div>
-                            )}
-                        </div>
-                    </div>
+                    <ProjectGallery
+                        images={project.images ?? [project.image]}
+                        title={project.title}
+                    />
                 </div>
 
                 {/* Content Grid */}
