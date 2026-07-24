@@ -3,7 +3,7 @@ import andraAquarium from "../assets/andraAquarium.webp";
 import CareerTimeline from "../components/CareerTimeline";
 import skills, { getSkillConfig, type SkillCategory } from "@/data/SkillsData";
 import { Download } from "lucide-react";
-import Certifications from "@/components/Certifications";
+// import Certifications from "@/components/Certifications";
 import ParticleBackground from "../components/ParticleBackground";
 import PageTransition from "../components/layout/PageTransition";
 import SEO from "../components/SEO";
@@ -17,13 +17,13 @@ const About = () => {
         />
         <div className="min-h-screen bg-zinc-50 text-zinc-900 font-sans selection:bg-zinc-900 selection:text-white pt-32 pb-20 dark:bg-zinc-900 dark:text-zinc-100">
             <ParticleBackground />
-            <div className="container mx-auto max-w-5xl">
+            <div className="container mx-auto max-w-5xl px-4 sm:px-6 md:px-8">
                 {/* Header Section */}
                 <motion.div
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.4 }}
-                    className="flex flex-col-reverse md:flex-row gap-12 items-start  py-10 md:py-12"
+                    className="flex flex-col-reverse md:flex-row gap-12 items-start py-10 md:py-12"
                 >
                     <div className="flex-1 space-y-6">
                         <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-100">
@@ -114,8 +114,8 @@ const About = () => {
 
                 {/* Timeline Section */}
                 <CareerTimeline />
-                {/* Certification section */}
-                <Certifications />
+                {/* Certification section (hide for now) */}
+                {/* <Certifications /> */}
             </div>
         </div>
         </PageTransition>

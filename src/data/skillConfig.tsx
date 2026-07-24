@@ -9,17 +9,19 @@ import {
     SiMysql,
     SiPostgresql,
     SiDocker,
-    SiGit,
     SiGithub,
     SiPostman,
     SiShadcnui,
-    SiJira,
     SiLinux,
     SiVercel,
+    SiSupabase,
+    SiN8N,
+    SiDbeaver,
 } from "react-icons/si";
-import { DiRedis } from "react-icons/di";
+
+import { DiRedis, DiMsqlServer, DiJava } from "react-icons/di";
 import { BsFiletypeJson } from "react-icons/bs";
-import { Users, Puzzle, Clock } from "lucide-react";
+// import { Users, Puzzle, Clock } from "lucide-react";
 import type { ReactNode } from "react";
 
 export interface SkillConfig {
@@ -69,17 +71,11 @@ const skillRegistry: Record<string, SkillConfig> = {
     "Shadcn UI": {
         name: "Shadcn UI",
         icon: <SiShadcnui size={16} />,
-        color: "bg-black text-white",
-        textColor: "text-black",
+        color: "bg-black text-white dark:bg-zinc-700",
+        textColor: "text-black dark:text-zinc-300",
     },
 
     // Backend
-    "Rest Api": {
-        name: "Rest Api",
-        icon: <BsFiletypeJson size={16} />,
-        color: "bg-black/50 text-white",
-        textColor: "text-black/50",
-    },
     "Laravel": {
         name: "Laravel",
         icon: <SiLaravel size={16} />,
@@ -92,87 +88,93 @@ const skillRegistry: Record<string, SkillConfig> = {
         color: "bg-[#777BB4] text-white",
         textColor: "text-[#777BB4]",
     },
-    "MySQL": {
-        name: "MySQL",
-        icon: <SiMysql size={16} />,
-        color: "bg-[#4479A1] text-white",
-        textColor: "text-[#4479A1]",
-    },
-    "PostgreSQL": {
-        name: "PostgreSQL",
-        icon: <SiPostgresql size={16} />,
-        color: "bg-[#4169E1] text-white",
-        textColor: "text-[#4169E1]",
+    "REST API": {
+        name: "REST API",
+        icon: <BsFiletypeJson size={16} />,
+        color: "bg-black/50 text-white dark:bg-zinc-700/50 dark:text-zinc-300",
+        textColor: "text-black/50 dark:text-zinc-400",
     },
     "Redis": {
         name: "Redis",
         icon: <DiRedis size={16} />,
-        color: "bg-red-500 text-white",
-        textColor: "text-red-500",
+        color: "bg-red-500 text-white dark:bg-red-600",
+        textColor: "text-red-500 dark:text-red-400",
+    },
+    "Java": {
+        name: "Java",
+        icon: <DiJava size={16} />,
+        color: "bg-red-500 text-white dark:bg-red-600",
+        textColor: "text-red-500 dark:text-red-400",
     },
 
-    // DevOps & Tools
-    "Docker": {
-        name: "Docker",
-        icon: <SiDocker size={16} />,
-        color: "bg-[#2496ED] text-white",
-        textColor: "text-[#2496ED]",
-    },
-    "Git": {
-        name: "Git",
-        icon: <SiGit size={16} />,
-        color: "bg-[#F05032] text-white",
-        textColor: "text-[#F05032]",
-    },
+    // Tools
     "GitHub": {
         name: "GitHub",
         icon: <SiGithub size={16} />,
-        color: "bg-[#181717] text-white",
-        textColor: "text-black",
+        color: "bg-[#181717] text-white dark:bg-zinc-700",
+        textColor: "text-black dark:text-zinc-300",
+    },
+    "Docker": {
+        name: "Docker",
+        icon: <SiDocker size={16} />,
+        color: "bg-[#2496ED] text-white dark:bg-[#1a7bb8]",
+        textColor: "text-[#2496ED] dark:text-[#4db8ff]",
     },
     "Postman": {
         name: "Postman",
         icon: <SiPostman size={16} />,
-        color: "bg-[#FF6C37] text-white",
-        textColor: "text-[#FF6C37]",
+        color: "bg-[#FF6C37] text-white dark:bg-[#e05a2a]",
+        textColor: "text-[#FF6C37] dark:text-[#ff8a5e]",
     },
-    "Jira": {
-        name: "Jira",
-        icon: <SiJira size={16} />,
-        color: "bg-[#0052CC] text-white",
-        textColor: "text-[#0052CC]",
+    "DBeaver": {
+        name: "DBeaver",
+        icon: <SiDbeaver size={16} />,
+        color: "bg-[#372923] text-white dark:bg-[#4a352c]",
+        textColor: "text-[#372923] dark:text-[#8a6b5e]",
     },
     "WSL": {
         name: "WSL",
         icon: <SiLinux size={16} />,
-        color: "bg-[#4E4E4E] text-white",
-        textColor: "text-[#4E4E4E]",
+        color: "bg-[#4E4E4E] text-white dark:bg-[#666666]",
+        textColor: "text-[#4E4E4E] dark:text-[#999999]",
     },
     "Vercel": {
         name: "Vercel",
         icon: <SiVercel size={16} />,
-        color: "bg-black text-white",
-        textColor: "text-black",
+        color: "bg-black text-white dark:bg-zinc-700",
+        textColor: "text-black dark:text-zinc-300",
+    },
+    "N8N": {
+        name: "N8N",
+        icon: <SiN8N size={16} />,
+        color: "bg-[#EA4B71] text-white dark:bg-[#c93d5f]",
+        textColor: "text-[#EA4B71] dark:text-[#ff6d92]",
+    },
+    "Supabase": {
+        name: "Supabase",
+        icon: <SiSupabase size={16} />,
+        color: "bg-[#3ECF8E] text-white dark:bg-[#2eb07a]",
+        textColor: "text-[#3ECF8E] dark:text-[#5edba8]",
     },
 
-    // Soft Skills
-    "Agile/Scrum": {
-        name: "Agile/Scrum",
-        icon: <Users size={16} />,
-        color: "bg-emerald-500 text-white",
-        textColor: "text-emerald-600",
+    // Databases
+    "MySQL": {
+        name: "MySQL",
+        icon: <SiMysql size={16} />,
+        color: "bg-[#4479A1] text-white dark:bg-[#35668a]",
+        textColor: "text-[#4479A1] dark:text-[#6a9fc7]",
     },
-    "Problem Solving": {
-        name: "Problem Solving",
-        icon: <Puzzle size={16} />,
-        color: "bg-purple-500 text-white",
-        textColor: "text-purple-600",
+    "PostgreSQL": {
+        name: "PostgreSQL",
+        icon: <SiPostgresql size={16} />,
+        color: "bg-[#4169E1] text-white dark:bg-[#3455b8]",
+        textColor: "text-[#4169E1] dark:text-[#6a8ff5]",
     },
-    "Time Management": {
-        name: "Time Management",
-        icon: <Clock size={16} />,
-        color: "bg-amber-500 text-white",
-        textColor: "text-amber-600",
+    "SQL Server": {
+        name: "SQL Server",
+        icon: <DiMsqlServer size={16} />,
+        color: "bg-[#CC2927] text-white dark:bg-[#a8201e]",
+        textColor: "text-[#CC2927] dark:text-[#e84a48]",
     },
 };
 

@@ -28,32 +28,32 @@ const skills: SkillCategory[] = [
     {
         category: "Backend",
         items: [
-            "Rest Api",
             "Laravel",
             "PHP",
-            "MySQL",
-            "PostgreSQL",
+            "REST API",
             "Redis",
+            "Java",
         ],
     },
     {
-        category: "DevOps & Tools",
+        category: "Tools",
         items: [
-            "Docker",
-            "Git",
             "GitHub",
+            "Docker",
             "Postman",
-            "Jira",
+            "DBeaver",
             "WSL",
             "Vercel",
+            "N8N",
+            "Supabase",
         ],
     },
     {
-        category: "Soft Skills",
+        category: "Databases",
         items: [
-            "Agile/Scrum",
-            "Problem Solving",
-            "Time Management",
+            "MySQL",
+            "PostgreSQL",
+            "SQL Server",
         ],
     },
 ];

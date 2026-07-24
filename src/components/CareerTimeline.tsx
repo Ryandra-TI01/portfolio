@@ -34,14 +34,13 @@ const CompanyLogoBadge = ({ company, companyIdentity }: { company: string; compa
 
 const CareerTimeline = () => {
     // State to track which item is currently expanded
-    const [expandedId, setExpandedId] = useState<number | null>(null);
-    const [hoveredId, setHoveredId] = useState<number | null>(null);
-    const timelineItems = [...timelineData].reverse();
+    const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-    const openedId = hoveredId ?? expandedId;
+    const openedIndex = hoveredIndex ?? expandedIndex;
 
-    const toggleItem = (id: number) => {
-        setExpandedId((prev) => (prev === id ? null : id));
+    const toggleItem = (index: number) => {
+        setExpandedIndex((prev) => (prev === index ? null : index));
     };
 
     return (
@@ -49,12 +48,12 @@ const CareerTimeline = () => {
             <h2 className="text-xl font-bold mb-8 text-zinc-900 tracking-tight dark:text-zinc-100">Experience</h2>
 
             <div className="relative border-l border-zinc-200 ml-3 space-y-4 py-2 dark:border-zinc-700">
-                {timelineItems.map((item, index) => {
-                    const isOpen = openedId === item.id;
+                {timelineData.map((item, index) => {
+                    const isOpen = openedIndex === index;
 
                     return (
                         <motion.div
-                            key={item.id}
+                            key={index}
                             initial={{ opacity: 0, x: -10 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
@@ -70,9 +69,9 @@ const CareerTimeline = () => {
                             {/* Clickable Card Area */}
                             <motion.div 
                                 layout
-                                onClick={() => toggleItem(item.id)}
-                                onMouseEnter={() => setHoveredId(item.id)}
-                                onMouseLeave={() => setHoveredId((prev) => (prev === item.id ? null : prev))}
+                                onClick={() => toggleItem(index)}
+                                onMouseEnter={() => setHoveredIndex(index)}
+                                onMouseLeave={() => setHoveredIndex((prev) => (prev === index ? null : prev))}
                                 className={`p-4 rounded-xl cursor-pointer transition-colors duration-300 border border-transparent
                                 ${isOpen ? "bg-zinc-50 border-zinc-200 shadow-sm dark:bg-zinc-800 dark:border-zinc-700" : "hover:bg-zinc-50/50 hover:border-zinc-100 dark:hover:bg-zinc-800/50 dark:hover:border-zinc-700"}`}
                             >
